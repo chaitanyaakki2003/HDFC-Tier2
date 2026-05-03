@@ -804,36 +804,59 @@ main .form form select[multiple] {
 
 
 /* =========================
-   OFFER CARD CONTAINER
+   FORCE OVERRIDE AEM GRID
    ========================= */
-.panel-wrapper.field-amount-display {
+main .form form .panel-wrapper.field-amount-display {
+  display: block !important;
+  grid-column: unset !important;
   width: 292px !important;
   max-width: 292px !important;
+  min-width: 292px !important;
   background: #f6f0e3 !important;
   border-radius: 20px !important;
   overflow: hidden !important;
-  padding: 38px 18px 0 !important;
+  padding: 32px 18px 0 !important;
   box-sizing: border-box !important;
   border: none !important;
   box-shadow: none !important;
 }
 
-/* hide legend */
-.panel-wrapper.field-amount-display > legend {
+/* remove legend */
+main .form form .panel-wrapper.field-amount-display > legend {
   display: none !important;
 }
 
 /* =========================
-   HEADING + AMOUNT
+   INNER GRID (OUR CONTROL)
    ========================= */
-.field-avail-xpress-personal-loan .field-label {
+main .form form .panel-wrapper.field-amount-display {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  grid-template-areas:
+    "title title"
+    "emi rate"
+    "taxes ."
+    "disclaimer disclaimer";
+  column-gap: 24px !important;
+  row-gap: 14px !important;
+}
+
+/* =========================
+   TITLE + AMOUNT
+   ========================= */
+main .form .field-personal-loan {
+  grid-area: title;
+  border-bottom: 1px dashed #e2d7c3 !important;
+  padding-bottom: 12px !important;
+}
+
+main .form .field-personal-loan .field-label {
   font-size: 16px !important;
   font-weight: 700 !important;
   color: #22364a !important;
-  margin-bottom: 10px !important;
 }
 
-.field-avail-xpress-personal-loan input {
+main .form .field-personal-loan input {
   font-size: 28px !important;
   font-weight: 800 !important;
   color: #16263c !important;
@@ -842,50 +865,27 @@ main .form form select[multiple] {
   padding: 0 !important;
 }
 
-/* divider */
-.field-avail-xpress-personal-loan {
-  border-bottom: 1px dashed #e2d7c3 !important;
-  padding-bottom: 12px !important;
-  margin-bottom: 12px !important;
-}
-
 /* =========================
-   DETAILS GRID
+   GRID POSITIONS
    ========================= */
-.panel-wrapper.field-amount-display {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  grid-template-areas:
-    "title title"
-    "emi rate"
-    "taxes ."
-    "disclaimer disclaimer";
-  row-gap: 14px !important;
-}
-
-/* placement */
-.field-avail-xpress-personal-loan {
-  grid-area: title;
-}
-
-.field-amount-emi {
+main .form .field-amount-emi {
   grid-area: emi;
 }
 
-.field-rate-intrest {
+main .form .field-rate-intrest {
   grid-area: rate;
 }
 
-.field-tax {
+main .form .field-tax {
   grid-area: taxes;
 }
 
 /* =========================
-   LABEL STYLE (left orange bar)
+   LABEL STYLE
    ========================= */
-.field-amount-emi .field-label,
-.field-rate-intrest .field-label,
-.field-tax .field-label {
+main .form .field-amount-emi .field-label,
+main .form .field-rate-intrest .field-label,
+main .form .field-tax .field-label {
   font-size: 12px !important;
   color: #7f8791 !important;
   font-weight: 600 !important;
@@ -893,9 +893,10 @@ main .form form select[multiple] {
   position: relative !important;
 }
 
-.field-amount-emi .field-label::before,
-.field-rate-intrest .field-label::before,
-.field-tax .field-label::before {
+/* orange bar */
+main .form .field-amount-emi .field-label::before,
+main .form .field-rate-intrest .field-label::before,
+main .form .field-tax .field-label::before {
   content: "";
   position: absolute;
   left: 0;
@@ -903,13 +904,12 @@ main .form form select[multiple] {
   width: 2px;
   height: 26px;
   background: #f2a126;
-  border-radius: 2px;
 }
 
 /* values */
-.field-amount-emi input,
-.field-rate-intrest input,
-.field-tax input {
+main .form .field-amount-emi input,
+main .form .field-rate-intrest input,
+main .form .field-tax input {
   font-size: 15px !important;
   font-weight: 800 !important;
   color: #1b2738 !important;
@@ -919,18 +919,19 @@ main .form form select[multiple] {
 }
 
 /* =========================
-   DISCLAIMER (BOTTOM ORANGE)
+   DISCLAIMER
    ========================= */
-.field-disclaimer {
+main .form .field-disclaimer {
   grid-area: disclaimer;
   margin: 0 -18px !important;
-  padding: 12px 16px 12px 40px !important;
+  padding: 14px 16px 14px 40px !important;
   background: #f2a126 !important;
   border-radius: 0 0 20px 20px !important;
   position: relative !important;
 }
 
-.field-disclaimer::before {
+/* icon */
+main .form .field-disclaimer::before {
   content: "i";
   position: absolute;
   left: 14px;
@@ -946,8 +947,8 @@ main .form form select[multiple] {
   line-height: 14px;
 }
 
-/* disclaimer text */
-.field-disclaimer p {
+/* text */
+main .form .field-disclaimer p {
   font-size: 10px !important;
   color: #fff4df !important;
   font-weight: 600 !important;
